@@ -24,7 +24,7 @@ O **RedeSocialApp** oferece funcionalidades essenciais de uma rede social modern
 
 - **Frontend**: React, CSS, HTML
 - **Backend**: Node.js, Express
-- **Banco de Dados**: MongoDB
+- **Banco de Dados**: DBdesigner
 - **Autenticação**: JWT
 
 ## 🎨 Contribua para o Projeto
