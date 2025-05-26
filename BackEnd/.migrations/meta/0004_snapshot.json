@@ -1,0 +1,594 @@
+{
+  "id": "3fe45f37-853d-42bb-b011-3ad3a5852af5",
+  "prevId": "365a382e-e94e-4c12-a5fc-e641bab65600",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.atleta": {
+      "name": "atleta",
+      "schema": "",
+      "columns": {
+        "id_atleta": {
+          "name": "id_atleta",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "modalidade": {
+          "name": "modalidade",
+          "type": "modalidade",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "biografia": {
+          "name": "biografia",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "conquistas": {
+          "name": "conquistas",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "posicao": {
+          "name": "posicao",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "federacao": {
+          "name": "federacao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "atleta_id_usuario": {
+          "name": "atleta_id_usuario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "atleta_atleta_id_usuario_usuario_id_usuario_fk": {
+          "name": "atleta_atleta_id_usuario_usuario_id_usuario_fk",
+          "tableFrom": "atleta",
+          "tableTo": "usuario",
+          "columnsFrom": [
+            "atleta_id_usuario"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.curtida": {
+      "name": "curtida",
+      "schema": "",
+      "columns": {
+        "id_curtida": {
+          "name": "id_curtida",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "usuario_id_usuario": {
+          "name": "usuario_id_usuario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "publicacoes_id_publicacoes": {
+          "name": "publicacoes_id_publicacoes",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data": {
+          "name": "data",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "curtida_usuario_id_usuario_usuario_id_usuario_fk": {
+          "name": "curtida_usuario_id_usuario_usuario_id_usuario_fk",
+          "tableFrom": "curtida",
+          "tableTo": "usuario",
+          "columnsFrom": [
+            "usuario_id_usuario"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "curtida_publicacoes_id_publicacoes_publicacoes_id_publicacoes_fk": {
+          "name": "curtida_publicacoes_id_publicacoes_publicacoes_id_publicacoes_fk",
+          "tableFrom": "curtida",
+          "tableTo": "publicacoes",
+          "columnsFrom": [
+            "publicacoes_id_publicacoes"
+          ],
+          "columnsTo": [
+            "id_publicacoes"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "curtida_usuario_id_usuario_publicacoes_id_publicacoes_unique": {
+          "name": "curtida_usuario_id_usuario_publicacoes_id_publicacoes_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "usuario_id_usuario",
+            "publicacoes_id_publicacoes"
+          ]
+        }
+      }
+    },
+    "public.destaques": {
+      "name": "destaques",
+      "schema": "",
+      "columns": {
+        "id_destaques": {
+          "name": "id_destaques",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "publicacoes_id_publicacoes": {
+          "name": "publicacoes_id_publicacoes",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "criterio": {
+          "name": "criterio",
+          "type": "criterio",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "destaques_publicacoes_id_publicacoes_publicacoes_id_publicacoes_fk": {
+          "name": "destaques_publicacoes_id_publicacoes_publicacoes_id_publicacoes_fk",
+          "tableFrom": "destaques",
+          "tableTo": "publicacoes",
+          "columnsFrom": [
+            "publicacoes_id_publicacoes"
+          ],
+          "columnsTo": [
+            "id_publicacoes"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.eventos": {
+      "name": "eventos",
+      "schema": "",
+      "columns": {
+        "id_eventos": {
+          "name": "id_eventos",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "usuario_id_usuario": {
+          "name": "usuario_id_usuario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nome": {
+          "name": "nome",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "localizacao": {
+          "name": "localizacao",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data_1": {
+          "name": "data_1",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data_2": {
+          "name": "data_2",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "eventos_usuario_id_usuario_usuario_id_usuario_fk": {
+          "name": "eventos_usuario_id_usuario_usuario_id_usuario_fk",
+          "tableFrom": "eventos",
+          "tableTo": "usuario",
+          "columnsFrom": [
+            "usuario_id_usuario"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.favoritos": {
+      "name": "favoritos",
+      "schema": "",
+      "columns": {
+        "id_favoritos": {
+          "name": "id_favoritos",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.olheiro": {
+      "name": "olheiro",
+      "schema": "",
+      "columns": {
+        "id_olheiro": {
+          "name": "id_olheiro",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "usuario_id_usuario": {
+          "name": "usuario_id_usuario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "area_de_interesses": {
+          "name": "area_de_interesses",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "verificar": {
+          "name": "verificar",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "informacoes_contato": {
+          "name": "informacoes_contato",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "olheiro_usuario_id_usuario_usuario_id_usuario_fk": {
+          "name": "olheiro_usuario_id_usuario_usuario_id_usuario_fk",
+          "tableFrom": "olheiro",
+          "tableTo": "usuario",
+          "columnsFrom": [
+            "usuario_id_usuario"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.publicacoes": {
+      "name": "publicacoes",
+      "schema": "",
+      "columns": {
+        "id_publicacoes": {
+          "name": "id_publicacoes",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "usuario_id_usuario": {
+          "name": "usuario_id_usuario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "conteudo": {
+          "name": "conteudo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "midia_url": {
+          "name": "midia_url",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "publicacoes_usuario_id_usuario_usuario_id_usuario_fk": {
+          "name": "publicacoes_usuario_id_usuario_usuario_id_usuario_fk",
+          "tableFrom": "publicacoes",
+          "tableTo": "usuario",
+          "columnsFrom": [
+            "usuario_id_usuario"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.usuario": {
+      "name": "usuario",
+      "schema": "",
+      "columns": {
+        "id_usuario": {
+          "name": "id_usuario",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "username": {
+          "name": "username",
+          "type": "varchar(45)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "senha": {
+          "name": "senha",
+          "type": "varchar(45)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "telefone": {
+          "name": "telefone",
+          "type": "varchar(15)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tipo_usuario": {
+          "name": "tipo_usuario",
+          "type": "tipo_usuario",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nome_completo": {
+          "name": "nome_completo",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "genero": {
+          "name": "genero",
+          "type": "genero",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "data_de_aniversario": {
+          "name": "data_de_aniversario",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "profile_picture": {
+          "name": "profile_picture",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "logradouro": {
+          "name": "logradouro",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "verificado": {
+          "name": "verificado",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "atualizado_em": {
+          "name": "atualizado_em",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "usuario_email_unique": {
+          "name": "usuario_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      }
+    },
+    "public.usuario_has_favoritos": {
+      "name": "usuario_has_favoritos",
+      "schema": "",
+      "columns": {
+        "usuario_id_usuario": {
+          "name": "usuario_id_usuario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "favoritos_id_favoritos": {
+          "name": "favoritos_id_favoritos",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "usuario_has_favoritos_usuario_id_usuario_usuario_id_usuario_fk": {
+          "name": "usuario_has_favoritos_usuario_id_usuario_usuario_id_usuario_fk",
+          "tableFrom": "usuario_has_favoritos",
+          "tableTo": "usuario",
+          "columnsFrom": [
+            "usuario_id_usuario"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "usuario_has_favoritos_favoritos_id_favoritos_favoritos_id_favoritos_fk": {
+          "name": "usuario_has_favoritos_favoritos_id_favoritos_favoritos_id_favoritos_fk",
+          "tableFrom": "usuario_has_favoritos",
+          "tableTo": "favoritos",
+          "columnsFrom": [
+            "favoritos_id_favoritos"
+          ],
+          "columnsTo": [
+            "id_favoritos"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {
+    "public.criterio": {
+      "name": "criterio",
+      "schema": "public",
+      "values": [
+        "Mais curtidos",
+        "Mais visualizados"
+      ]
+    },
+    "public.genero": {
+      "name": "genero",
+      "schema": "public",
+      "values": [
+        "Masculino",
+        "Feminino",
+        "Não binário"
+      ]
+    },
+    "public.modalidade": {
+      "name": "modalidade",
+      "schema": "public",
+      "values": [
+        "Masculino",
+        "Feminino"
+      ]
+    },
+    "public.tipo_usuario": {
+      "name": "tipo_usuario",
+      "schema": "public",
+      "values": [
+        "Atleta",
+        "Olheiro"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

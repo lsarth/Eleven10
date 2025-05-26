@@ -1,0 +1,48 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1747594646357,
+      "tag": "0000_purple_norman_osborn",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1747594771657,
+      "tag": "0001_minor_matthew_murdock",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1747594847056,
+      "tag": "0002_fearless_thunderbolts",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1747597256981,
+      "tag": "0003_exotic_human_fly",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1747791470450,
+      "tag": "0004_luxuriant_absorbing_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1747795589096,
+      "tag": "0005_lucky_lenny_balinger",
+      "breakpoints": true
+    }
+  ]
+}

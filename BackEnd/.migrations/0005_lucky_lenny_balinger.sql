@@ -1,0 +1,1 @@
+ALTER TABLE "curtida" DROP CONSTRAINT "curtida_usuario_id_usuario_publicacoes_id_publicacoes_unique";
